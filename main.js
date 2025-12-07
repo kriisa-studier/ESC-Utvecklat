@@ -311,7 +311,15 @@ function applyAllFilters() {
 }
 
 export function updateRatingFilter(min, max) {
+  // säkerställ att min inte är högre än max
+  if (min > max) {
+    alert("Min rating can't be higher than max rating");
+    min = max; // tvinga min att matcha max
+  }
+
   currentRatingMin = min;
   currentRatingMax = max;
+
   applyAllFilters();
 }
+
