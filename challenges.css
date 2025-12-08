@@ -156,6 +156,9 @@ figcaption {
   overflow: hidden;
   width: 100%;
 }
+.card:hover {
+    box-shadow: 0 0 100px rgb(0, 0, 0, 0.233);
+}
 
 /* FIX: Gör bilderna smaller & proportionerliga */
 .imageCard {
