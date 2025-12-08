@@ -139,10 +139,29 @@ function createCard(data) {
   const card = document.createElement("div");
   card.classList.add("card");
 
+  const imageWrapper = document.createElement("div");
+  imageWrapper.classList.add("imageWrapper");
+
   const cardImage = document.createElement("img");
   cardImage.src = data.image || "/img/images/hacker.png";
   cardImage.alt = `Image for ${data.title}`;
   cardImage.classList.add("imageCard");
+
+  // icon in top corner
+  const iconWrapper = document.createElement("div");
+  iconWrapper.classList.add("roomIcon");
+  iconWrapper.innerHTML =
+    data.type === "onsite"
+      ? `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+      <path d="M341.8 72.6C329.5 61.2 310.5 61.2 298.3 72.6L74.3 280.6C64.7 289.6 61.5 303.5 66.3 315.7C71.1 327.9 82.8 336 96 336L112 336L112 512C112 547.3 140.7 576 176 576L464 576C499.3 576 528 547.3 528 512L528 336L544 336C557.2 336 569 327.9 573.8 315.7C578.6 303.5 575.4 289.5 565.8 280.6L341.8 72.6zM304 384L336 384C362.5 384 384 405.5 384 432L384 528L256 528L256 432C256 405.5 277.5 384 304 384z"/>
+    </svg>
+  `
+      : `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+      <path d="M128 96C92.7 96 64 124.7 64 160L64 400L128 400L128 160L512 160L512 400L576 400L576 160C576 124.7 547.3 96 512 96L128 96zM19.2 448C8.6 448 0 456.6 0 467.2C0 509.6 34.4 544 76.8 544L563.2 544C605.6 544 640 509.6 640 467.2C640 456.6 631.4 448 620.8 448L19.2 448z"/>
+    </svg>
+  `;
 
   const container = document.createElement("div");
   container.classList.add("container");
@@ -187,8 +206,10 @@ function createCard(data) {
   container.appendChild(participants);
   container.appendChild(roomInfo);
   container.appendChild(btnDiv);
+  imageWrapper.appendChild(cardImage);
+  imageWrapper.appendChild(iconWrapper);
 
-  card.appendChild(cardImage);
+  card.appendChild(imageWrapper);
   card.appendChild(container);
 
   return card;
@@ -331,4 +352,3 @@ export function updateRatingFilter(min, max) {
 
   applyAllFilters();
 }
-
